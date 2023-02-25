@@ -11,3 +11,4 @@ Files | Descriptions
 [6-stop_me_if_you_can](./6-stop_me_if_you_can) | stops 4-to_infinity_and_beyond process.
 [67-stop_me_if_you_can](./67-stop_me_if_you_can) | stops 7-highlander process.
 [7-highlander](./7-highlander) | displays `To infinity and beyond` indefinitely with a sleep 2 between each iteration. Displays I am invincible!!! upon receiving a `SIGTERM` signal.
+[8-beheaded_process](./8-beheaded_process) | kills the process 7-highlander
