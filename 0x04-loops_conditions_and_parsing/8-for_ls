@@ -4,7 +4,7 @@
 
 list=$(ls)
 
-for i in $list;
+for i in $list
 do
-	$i | cut -d '-' -f2
+	echo "$i" | cut -d '-' -f2
 done
