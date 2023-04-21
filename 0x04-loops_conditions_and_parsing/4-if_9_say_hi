@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#displays `Best School` 10 times using a while loop
+# but on the 9th iteration `Best School` and the `hi` is printed
+
+n=1
+while [ $n -le 10 ]
+do
+	echo "Best School"
+	if [ $n -eq 9 ]
+	then
+		echo "Hi"
+	fi
+	(( n++ ))
+done

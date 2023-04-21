@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# displays numbers from 1 to 20
+#	`4` and the `bad luck from China` on 4th iteration
+#	`9` and the `bad luck from Japan` on 9th iteration
+#	`17` and the `bad luck from Italy` on 17th iteration
+
+n=1
+while [ $n -le 20 ]
+do
+	case $n in
+		"4" )
+			echo $n
+			echo "bad luck from China" ;;
+		"9" )
+			echo $n
+			echo "bad luck from Japan" ;;
+		"17" )
+			echo $n
+			echo "bad luck from Italy" ;;
+		* )
+			echo $n
+	esac
+
+	(( n++ ))
+done
