@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # making a story out of the content of the file /etc/passwd
 
-while -r read user pw uid gid u_info home shell
+while read -r user pw uid gid u_info home shell
 do
 	echo "The user $user is part of the the $gid gang,"\
 	"lives in $home and rides $shell. $uid's place is protected"\
