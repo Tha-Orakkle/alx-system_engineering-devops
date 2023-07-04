@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Installs Nginx and configures it on the remote server
 
-err_loc="root /var/www/html/;\n\t\tinternal;"
+err_loc="root /var/www/html/;\n\t\tinternal;\n\t}"
 err="error_page 404 /404.html;\n\tlocation /404.html {\n\t\t$err_loc"
 
 sudo apt-get update
