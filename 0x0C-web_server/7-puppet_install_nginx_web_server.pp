@@ -1,7 +1,8 @@
 # Installs and configures Nginx web server with Puppet
+include stdlib
 
-new_page="https://www.youtube.com/watch?v=EJC-_j3SnXk"
-red_line="\trewrite ^/redirect_me/$ ${new_page} permanent;"
+$new_page="https://www.youtube.com/watch?v=EJC-_j3SnXk"
+$red_line="\trewrite ^/redirect_me/$ ${new_page} permanent;"
 
 exec { 'update packages':
 	provider => shell,
