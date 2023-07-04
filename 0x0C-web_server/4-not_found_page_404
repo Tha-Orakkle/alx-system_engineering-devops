@@ -10,4 +10,4 @@ sudo ufw allow 'Nginx HTTP'
 sudo chown -R "$USER:$USER" /var/www/
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 sudo sed -i "0,/}/ s|}|}\n\n\t$err|" /etc/nginx/sites-available/default
-sudo service nginx start
+sudo service nginx restart
