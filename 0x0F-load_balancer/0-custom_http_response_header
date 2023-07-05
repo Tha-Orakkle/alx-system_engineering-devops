@@ -20,4 +20,5 @@ sudo sed -i "/server_name _;/a \ \trewrite ^/redirect_me/$ $link permanent;" /et
 sudo sed -i "0,/}/ s|}|}\n\n\t$err|" /etc/nginx/sites-available/default
 
 sudo sed -i "0,/$pattern/ s|$pattern|$pattern$header|" /etc/nginx/sites-available/default
+
 sudo service nginx restart
