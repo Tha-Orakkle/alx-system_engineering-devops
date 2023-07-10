@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# displays information about subdomains
+
+display_info() {
+	domain=$1
+	sub=$2
+
+	dig "$sub"."$domain" | awk '/ANSWER SECTION:/{getline; gsub(/\..*/, "", $1); print "The subdomain", $1, "is a", $4, "record and points to", $5}'
+}
+
+domain=$1
+
+if [ $# -eq 1 ]
+then
+	# where subdomain is not provided
+	display_info "$domain" "www"
+	display_info "$domain" "lb-01"
+	display_info "$domain" "web-01"
+	display_info "$domain" "web-02"
+else
+	# where subdomain is provided
+	sub=$2
+	display_info "$domain" "$sub"
+fi
