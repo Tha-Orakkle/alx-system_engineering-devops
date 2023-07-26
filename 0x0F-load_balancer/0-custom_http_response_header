@@ -5,7 +5,7 @@ err_loc="root /var/www/html/;\n\t\tinternal;\n\t}"
 err="error_page 404 /404.html;\n\tlocation /404.html {\n\t\t$err_loc"
 link="https://www.youtube.com/watch?v=EJC-_j3SnXk"
 pattern=":80 default_server;"
-header="\n\tadd_header X-Server-By \$HOSTNAME;"
+header="\n\tadd_header X-Served-By \$HOSTNAME;"
 
 
 sudo apt -y update
