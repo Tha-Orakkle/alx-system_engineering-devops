@@ -7,25 +7,40 @@ import requests
 import sys
 
 
-def todo_list(employee_id):
-    url = "https://jsonplaceholder.typicode.com/"
-    response = requests.get(url + "users/{}".format(employee_id))
-    if response.status_code == 200:
-        employee_data = response.json()
-        employee_name = employee_data.get('name')
+class Employee:
+    """model for employee information"""
+    __url = "https://jsonplaceholder.typicode.com/"
 
-    response = requests.get(url + "todos", params={"userId": employee_id})
-    if response.status_code == 200:
-        todos = response.json()
+    def __init__(self, id=0):
+        """initialisation"""
+        self.id = id
 
-    completed_tasks = [task['title'] for task in todos if task['completed']]
-    firstline = "Employee {} is done with tasks({}/{}):"
-    result = firstline.format(employee_name, len(completed_tasks), len(todos))
+    def employee_data(self):
+        """Returns the employee data"""
+        response = requests.get(Employee.__url + "users/{}".format(self.id))
+        if response.status_code == 200:
+            return response.json()
 
-    for task in completed_tasks:
-        result += "\n\t {}".format(task)
+    def todo_list(self):
+        """Return the all tasks of the employee"""
+        response = requests.get(Employee.__url + "todos",
+                                params={"userId": self.id})
+        if response.status_code == 200:
+            return response.json()
 
-    return result
+    def todo_progress(self):
+        """Returns all completed tasks of the employee"""
+        employee_name = self.employee_data().get('name')
+        todo = self.todo_list()
+        tasks_done = [task['title'] for task in todo if task['completed']]
+        result = "Employee {} is done with tasks({}/{}):"\
+            .format(employee_name, len(tasks_done),
+                    len(todo))
+
+        for task in tasks_done:
+            result += "\n\t {}".format(task)
+
+        return result
 
 
 if __name__ == "__main__":
@@ -33,7 +48,8 @@ if __name__ == "__main__":
         print("Usage: python3 <python file> <employee_id>")
     else:
         try:
-            employee_id = int(sys.argv[1])
-            print(todo_list(employee_id))
+            emp_id = int(sys.argv[1])
+            employee = Employee(emp_id)
+            print(employee.todo_progress())
         except ValueError:
             print("employee_id must be a valid id (int)")
