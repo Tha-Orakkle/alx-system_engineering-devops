@@ -43,7 +43,7 @@ class Employee:
 
         return result
 
-    def save_to_csv(self):
+    def save_csv(self):
         """saves data in csv format"""
         todo = self.todo_list()
         username = self.employee_data().get('username')
@@ -65,6 +65,6 @@ if __name__ == "__main__":
         try:
             emp_id = int(sys.argv[1])
             employee = Employee(emp_id)
-            employee.save_to_csv()
+            employee.save_csv()
         except ValueError:
             print("employee_id must be a valid id (int)")
