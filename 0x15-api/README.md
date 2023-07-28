@@ -21,6 +21,11 @@ This project involves learning how to use api.
     * Requirements:
       * Records all tasks that are owned by this employee
       * Format must be: ```"USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"```
-      * File name must be: *USER_ID.csv`
+      * File name must be: `USER_ID.csv`
 
-
+* **Export to JSON**
+  * [2-export_to_JSON.py](./2-export_to_JSON.py):  Extends previous sciripts to export data in the json  format
+    * Requirements:
+      * Records all tasks that are owned by this employee
+      * Format must be: ```{ "USER_ID": [{"task": "TASK_TITLE", "completed": TASK_COMPLETED_STATUS, "username": "USERNAME"}, {"task": "TASK_TITLE", "completed": TASK_COMPLETED_STATUS, "username": "USERNAME"}, ... ]}```
+      * File name must be: `USER_ID.json`

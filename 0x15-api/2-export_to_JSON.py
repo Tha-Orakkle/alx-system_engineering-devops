@@ -3,6 +3,8 @@
 Returns information about employee's todo list using api
 and identifies the employee by the id passed as the argument
 """
+import csv
+import json
 import requests
 import sys
 
@@ -42,6 +44,37 @@ class Employee:
 
         return result
 
+    def save_csv(self):
+        """saves data in csv format"""
+        todo = self.todo_list()
+        username = self.employee_data().get('username')
+        data = []
+        for task in todo:
+            row = [self.id, username, task['completed'], task['title']]
+            data.append(row)
+
+        with open("{}.csv".format(self.id), 'w', newline="") as csvfile:
+            writer = csv.writer(csvfile, delimiter=',', quotechar='"',
+                                quoting=csv.QUOTE_ALL)
+            writer.writerows(data)
+
+    def save_json(self):
+        """saves data in json format"""
+        username = self.employee_data().get('username')
+        todo = self.todo_list()
+        data = {}
+        all_tasks = []
+        for item in todo:
+            task = {}
+            task['task'] = item['title']
+            task['completed'] = item['completed']
+            task['username'] = username
+            all_tasks.append(task)
+        data[str(self.id)] = all_tasks
+
+        with open("{}.json".format(self.id), 'w', newline="") as jsonfile:
+            json.dump(data, jsonfile)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -50,6 +83,6 @@ if __name__ == "__main__":
         try:
             emp_id = int(sys.argv[1])
             employee = Employee(emp_id)
-            print(employee.todo_progress())
+            employee.save_json()
         except ValueError:
             print("employee_id must be a valid id (int)")
