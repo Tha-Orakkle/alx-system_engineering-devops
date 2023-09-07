@@ -29,8 +29,8 @@ frontend="$fname\n\t$fbind\n\t$fmode\n\t$fdefault\n"
 
 bname="backend web-backend"
 bbalance="balance roundrobin"
-bserver1="server 70174-web-01 52.201.220.193:80 check"
-bserver2="server 70174-web-02 100.26.240.86:80 check"
+bserver1="server 70174-web-01 54.210.173.51:80 check"
+bserver2="server 70174-web-02 54.160.108.152:80 check"
 backend="$bname\n\t$bbalance\n\t$bserver1\n\t$bserver2"
 
 sudo sed -i "$ a $frontend" $hgproxy_conf_file
