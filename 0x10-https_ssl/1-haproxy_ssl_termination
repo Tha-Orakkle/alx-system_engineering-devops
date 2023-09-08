@@ -24,9 +24,9 @@ defaults
 	mode	http
 	option	httplog
 	option	dontlognull
-	timeout connect 5000
-	timeout client  50000
-	timeout server  50000
+        timeout connect 5000
+        timeout client  50000
+        timeout server  50000
 	errorfile 400 /etc/haproxy/errors/400.http
 	errorfile 403 /etc/haproxy/errors/403.http
 	errorfile 408 /etc/haproxy/errors/408.http
@@ -49,14 +49,13 @@ frontend www-https
 	bind *:443 ssl crt /etc/haproxy/certs/www.oraculum.tech.pem
 	http-request set-header X-Forwarded-Proto https
 	acl letsencrypt-acl path_beg /.well-known/acme-challenge/
-	use_backend letsencrypt-backend if letsencrypt-acl
+ 	use_backend letsencrypt-backend if letsencrypt-acl
 	default_backend web-backend
-
 
 backend web-backend
 	balance roundrobin
-	server 70174-web-01 52.201.220.193:80 check
-	server 70174-web-02 100.26.240.86:80 check
+	server 70174-web-01 54.210.173.51:80 check
+	server 70174-web-02 54.160.108.152:80 check
 
 backend letsencrypt-backend
 	server letsencrypt 127.0.0.1:54321
