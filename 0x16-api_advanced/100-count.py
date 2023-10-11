@@ -33,7 +33,7 @@ def count_words(subreddit, word_list, after=None, count_list=None):
 
     response = requests.get(url, headers=headers, allow_redirects=False)
 
-    if response.status_code != 200 or 'data' not in response.json():
+    if response.status_code != 200:
         return None
 
     r = response.json()

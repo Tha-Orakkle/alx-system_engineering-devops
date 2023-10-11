@@ -31,7 +31,9 @@ def recurse(subreddit, hot_list=[], after=""):
             }
     response = requests.get(url, headers=headers, allow_redirects=False)
 
-    if response.status_code != 200 or 'data' not in response.json():
+    if response.status_code != 200:
+        return None
+    elif 'data' not in response.json():
         return None
     else:
         r = response.json()
