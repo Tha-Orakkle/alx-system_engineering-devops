@@ -56,6 +56,10 @@ server {
 		proxy_pass http://127.0.0.1:5003/2-hbnb;
 	}
 
+	location /static {
+		root /home/ubuntu/AirBnB_clone_v4/web_dynamic;
+	}
+
 	# serve /airbnb-onepage/ route from AirBnB_clone_v2
 	location /airbnb-onepage {
 		proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
